@@ -32,18 +32,32 @@
     font-weight: 500;
     margin-bottom: 15px;
 }
-.counter-container > button{
-    display: block;
+
+.button_group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:1.5rem;
+}
+.button_group > button{
+    
     border: none;
-    padding: 10px 20px;
+    padding: 10px;
+    font-size: 1rem;
     border-radius: 10px;
     background: #0052f5;
     color: #fff;
     transition: padding 2s;
 }
-.counter-container > button:hover{
-    box-shadow: 2px 2px 13px 12px rgba(3, 169, 246, 0.05);
+.button_group > #increase:hover{
+    box-shadow: 2px 2px 13px 6px rgba(2, 183, 255, 0.334);
     padding: 12px;
+    cursor: pointer;
+}
+.button_group > #decrease:hover{
+    box-shadow: 2px 2px 13px 6px rgba(2, 183, 255, 0.334);
+    padding: 12px;
+    cursor: pointer;
 }
 
 .counterMessage{
