@@ -13,11 +13,13 @@ if(!localStorage.getItem('counter')){
 
 //Get HTML elements
 const h2 = document.querySelector('h2');
-const button = document.querySelector('button');
-const message = document.querySelector('p');
+const increaseBtn = document.querySelector('#increase');
+const decreaseBtn = document.querySelector('#decrease');
+const counterMessage = document.querySelector('.counterMessage')
 
-//Counter function
-function count() {
+//Increase Count function
+function IncreaseCount() {
+    // clearInterval(DecreaseCount);
 
     //assign localstorage counter to a variable
     let counter = localStorage.getItem('counter');
@@ -26,21 +28,52 @@ function count() {
     h2.innerHTML = counter; //display counter in html element
     
     //Update counter value into localstorage
-    localStorage.setItem('counter', counter); 
+    localStorage.setItem('counter', counter);
     
-    //A condition set if counter reaches 20 something should happen
-    if(counter === 30){
-        
-        message.innerHTML = `Your count has reached ${counter}`;
-        counter = 0;
-    }else{
-        message.innerHTML = '';
-        }
+    if(counter === 0){
+        h2.style.color = 'black';
+    }else if(counter < 0){
+        h2.style.color = 'red';
+    }
+    
+    else{
+        h2.style.color = 'green';
+    }
+
+    // setInterval(IncreaseCount, 1000); //invoke count f
 }
+
+//Decrease Count function
+function DecreaseCount(){
+    // clearInterval(IncreaseCount);
+
+    let counter = localStorage.getItem('counter');
+    counter--;
+    h2.innerHTML = counter;
+
+    localStorage.setItem('counter', counter);
+
+    if(counter === 0){
+        h2.style.color = 'black';
+    }else if(counter < 0){
+        h2.style.color = 'red';
+    }
+    
+    else{
+        h2.style.color = 'green';
+    }
+
+    
+    // setInterval(DecreaseCount, 1000); //invoke count function after 2000ms
+}
+
 
 //Load DOM before js script
 document.addEventListener('DOMContentLoaded', () =>{
 
-    button.onclick = count; //invoke count function on button
-    setInterval(count, 2000); //invoke count function after 2000ms
+    // h2.innerHTML = initialNumber;
+
+    increaseBtn.addEventListener('click', IncreaseCount); //invoke increase count function
+    decreaseBtn.addEventListener('click', DecreaseCount); //invoke decrease count function
+
 })
